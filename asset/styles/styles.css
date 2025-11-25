@@ -201,7 +201,7 @@ section {
 }
 
 .header-content .right-header .name {
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 2rem;
   line-height: 3rem;
 }
@@ -1439,7 +1439,7 @@ section {
   min-width: 480px;
   padding: 1.8rem;
   /* background: rgba(2, 6, 23, 0.65); */
-  backdrop-filter: blur(12px);
+  /* backdrop-filter: blur(12px); */
   border-radius: 20px;
   /* border: 1px solid #0f172a; */
 }
@@ -1564,4 +1564,180 @@ section {
 .gh-highlight-meta {
   font-size: 0.75rem;
   opacity: 0.7;
+}
+
+/* ============================================
+   FIX: RESPONSIVE GITHUB CARD + GRAPH
+   ALWAYS FULL WIDTH (NOT SQUISHED)
+   ============================================ */
+
+/* Make GitHub card fully responsive */
+.gh-card {
+  width: 100% !important;
+  max-width: 540px; /* Looks good on large screens */
+  min-width: 0; /* Remove forced 480px width */
+  padding: 1.8rem;
+  margin: 0 auto; /* Center card */
+}
+
+/* Ensure layout stacks nicely on smaller screens */
+@media (max-width: 1100px) {
+  .header-content .left-header .image {
+    width: 100%;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    justify-content: center;
+  }
+  #github-card {
+    width: 100%;
+    max-width: 520px;
+  }
+}
+
+/* ============================
+   Contribution Graph — Always visible
+   NEVER squish, only scroll
+   ============================ */
+.gh-contrib-graph {
+  display: flex;
+  gap: 4px;
+  padding: 0.6rem;
+  background: #020617;
+  border: 1px solid #111827;
+  border-radius: 12px;
+
+  overflow-x: auto; /* << ALLOWS SCROLL */
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  flex-wrap: nowrap; /* << PREVENT SQUISH */
+
+  min-height: 90px; /* maintain size */
+}
+
+/* Weeks always stay full-size columns */
+.gh-contrib-week {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0; /* << PREVENT SHRINK */
+}
+
+/* Each cell stays perfect square */
+.gh-contrib-cell {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0; /* << KEEP SIZE */
+  border-radius: 3px;
+  transition: transform 0.15s ease;
+}
+
+/* Fix spacing between graph & repos */
+.gh-highlights {
+  margin-top: 1.4rem !important;
+}
+
+/* On mobile — graph scrolls horizontally gracefully */
+@media (max-width: 600px) {
+  .gh-card {
+    max-width: 100%;
+    padding: 1.2rem;
+  }
+
+  .gh-contrib-graph {
+    padding: 0.4rem;
+    gap: 3px;
+    min-height: 80px;
+  }
+
+  .gh-contrib-cell {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* ===========================================
+   GLOBAL GITHUB CARD FIX — DESKTOP & MOBILE
+   =========================================== */
+
+/* --- DESKTOP (no scroll, full graph visible) --- */
+@media (min-width: 900px) {
+  .gh-card {
+    width: 100%;
+    max-width: 650px; /* wider card */
+    min-width: 650px; /* prevent squish */
+    margin: 0;
+    padding: 2rem;
+  }
+
+  /* Graph fills width, no scroll */
+  .gh-contrib-graph {
+    overflow-x: hidden !important;
+    overflow-y: hidden;
+    justify-content: flex-start;
+
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    gap: 6px;
+  }
+
+  /* Cells auto-fit size */
+  .gh-contrib-cell {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  /* Weeks cannot shrink */
+  .gh-contrib-week {
+    flex-shrink: 0;
+  }
+}
+
+/* --- MOBILE / TABLET VIEW (< 900px) --- */
+@media (max-width: 899px) {
+  .gh-card {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+    padding: 1.2rem;
+    margin: 0 auto;
+  }
+
+  /* Graph scroll only in mobile mode */
+  .gh-contrib-graph {
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    white-space: nowrap;
+    gap: 4px;
+    padding: 0.6rem;
+  }
+
+  /* Weeks hold size, don't wrap */
+  .gh-contrib-week {
+    flex-shrink: 0;
+  }
+
+  .gh-contrib-cell {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* --- UNIVERSAL FIX (no squish ever) --- */
+.gh-contrib-week {
+  display: flex;
+  flex-direction: column;
+}
+
+.gh-contrib-graph::-webkit-scrollbar {
+  height: 6px;
+}
+
+.gh-contrib-graph::-webkit-scrollbar-thumb {
+  background: #22c55e55;
+  border-radius: 4px;
 }
