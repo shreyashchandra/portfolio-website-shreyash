@@ -201,7 +201,7 @@ section {
 }
 
 .header-content .right-header .name {
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 2rem;
   line-height: 3rem;
 }
@@ -1392,4 +1392,176 @@ section {
     width: 52px;
     height: 52px;
   }
+}
+
+/* ============================================================
+   GITHUB CONTRIBUTION GRAPH
+   ============================================================ */
+
+.gh-contrib-graph {
+  display: flex;
+  gap: 4px;
+  margin-top: 0.6rem;
+  padding: 0.4rem 0.2rem;
+  background: #020617;
+  border: 1px solid #111827;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.gh-contrib-week {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gh-contrib-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  transition: transform 0.15s ease;
+}
+
+.gh-contrib-cell:hover {
+  transform: scale(1.4);
+  z-index: 10;
+  border: 1px solid #22c55e;
+}
+
+/* ============================================================
+   GITHUB CARD FULL STYLES
+   ============================================================ */
+
+.gh-card {
+  /* width: 480px !important; */
+  width: 100% !important;
+
+  min-width: 480px;
+  padding: 1.8rem;
+  /* background: rgba(2, 6, 23, 0.65); */
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  /* border: 1px solid #0f172a; */
+}
+
+/* HEADER */
+.gh-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.gh-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2px solid #0ea5e9;
+}
+
+.gh-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.gh-username {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.gh-bio {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* STATS */
+.gh-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.gh-stat {
+  text-align: center;
+}
+
+.gh-stat-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.gh-stat-label {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* CONTRIBUTION GRAPH */
+.gh-contrib-graph {
+  display: flex;
+  gap: 6px;
+  padding: 1rem;
+  background: #020617;
+  border: 1px solid #111827;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+}
+
+.gh-contrib-week {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gh-contrib-cell {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  transition: transform 0.15s ease;
+}
+
+.gh-contrib-cell:hover {
+  transform: scale(1.35);
+  border: 1px solid #22c55e;
+  z-index: 10;
+}
+
+/* HIGHLIGHTED REPOS */
+.gh-highlights-title {
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.gh-highlight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.gh-highlight-item {
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid #0f172a;
+  display: flex;
+  flex-direction: column;
+  transition: 0.15s ease;
+}
+
+.gh-highlight-item:hover {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: #1e3a8a;
+}
+
+.gh-highlight-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.gh-highlight-meta {
+  font-size: 0.75rem;
+  opacity: 0.7;
 }
