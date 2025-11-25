@@ -1672,8 +1672,8 @@ section {
 
   /* Graph fills width, no scroll */
   .gh-contrib-graph {
-    overflow-x: hidden !important;
-    overflow-y: hidden;
+    /* overflow-x: hidden !important;
+    overflow-y: hidden; */
     justify-content: flex-start;
 
     width: 100%;
@@ -1708,7 +1708,7 @@ section {
   /* Graph scroll only in mobile mode */
   .gh-contrib-graph {
     overflow-x: auto !important;
-    overflow-y: hidden;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 
     white-space: nowrap;
