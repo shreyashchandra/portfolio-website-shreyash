@@ -41,6 +41,10 @@
   list-style: none;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--color-primary);
@@ -65,56 +69,24 @@ header {
 section {
   min-height: 100vh;
   width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
+  position: relative;
   padding: 3rem 18rem;
 }
 
 .section {
-  transform: translateY(-100%) scale(0);
-  transition: var(--animation);
   background-color: var(--color-primary);
+  transition: var(--animation);
 }
 
-.sec1 {
-  display: none;
-  transform: translateY(0) scale(1);
-}
-
-.sec2 {
-  display: none;
-  transform: translateY(0) scale(1);
-}
-
-.sec3 {
-  display: none;
-  transform: translateY(0) scale(1);
-}
-
-.sec4 {
-  display: none;
-  transform: translateY(0) scale(1);
-}
-
+// All sections are now part of the scroll layout
+.sec1,
+.sec2,
+.sec3,
 .sec5 {
-  display: none;
-  transform: translateY(0) scale(1);
-}
-
-.active {
   display: block;
-  animation: scaleAnim 1s ease-in-out;
-  @keyframes scaleAnim {
-    0% {
-      transform: translateY(-100%) scaleY(0);
-    }
-    100% {
-      transform: translateY(0) scaleY(1);
-    }
-  }
 }
 
+// Controls (floating navigation buttons)
 .controls {
   position: fixed;
   z-index: 10;
@@ -137,7 +109,7 @@ section {
   }
 
   .control {
-    padding: 1rem;
+    padding: 0;
     cursor: pointer;
     background-color: var(--color-grey-4);
     width: 3.5rem;
@@ -147,6 +119,18 @@ section {
     align-items: center;
     justify-content: center;
     box-shadow: var(--box-shadow-1);
+    transition: var(--animation);
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      color: inherit;
+    }
+
     i {
       font-size: 1.3rem;
       pointer-events: none;
@@ -159,11 +143,11 @@ section {
 }
 
 // Header Content
-
 .header-content {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   min-height: 100vh;
+
   .left-header {
     display: flex;
     align-items: center;
@@ -188,16 +172,17 @@ section {
       margin-left: 4rem;
       background-color: var(--color-black);
       transition: var(--animation);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
 
       img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: auto;
+        object-fit: contain;
         transition: var(--animation);
-        filter: grayscale(100%);
-        &:hover {
-          filter: grayscale(0);
-        }
+        filter: none;
       }
     }
   }
@@ -212,10 +197,12 @@ section {
       font-size: 3rem;
       margin-bottom: 2rem;
       line-height: 3rem;
+
       span {
         color: var(--color-secondary);
       }
     }
+
     p {
       margin-top: 0.5rem;
       margin-bottom: 3rem;
@@ -226,14 +213,14 @@ section {
   }
 }
 
-// About //
-
+// About
 .about-container {
   margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding-top: 3.5rem;
   padding-bottom: 5rem;
+
   .right-about {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -244,6 +231,7 @@ section {
       border-radius: 5px;
       transition: var(--animation);
       box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
+
       &:hover {
         cursor: default;
         transform: translateY(-5px);
@@ -261,6 +249,7 @@ section {
           font-weight: 700;
           color: var(--color-secondary);
         }
+
         .small-text {
           padding-left: 3rem;
           position: relative;
@@ -268,6 +257,7 @@ section {
           font-size: 1rem;
           color: var(--color-grey-1);
           letter-spacing: 2px;
+
           &::before {
             content: "";
             position: absolute;
@@ -284,11 +274,13 @@ section {
 
   .left-about {
     padding-right: 5rem;
+
     p {
       line-height: 2rem;
       padding: 1rem;
       color: var(--color-grey-1);
     }
+
     h4 {
       font-size: 2rem;
       text-transform: uppercase;
@@ -298,6 +290,7 @@ section {
 
 .about-stats {
   padding-bottom: 4rem;
+
   .progress-bars {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -306,10 +299,12 @@ section {
     .progress-bar {
       display: flex;
       flex-direction: column;
+
       .prog-title {
         text-transform: uppercase;
         font-weight: 500;
       }
+
       .progress-con {
         display: flex;
         align-items: center;
@@ -324,6 +319,7 @@ section {
           background-color: var(--color-grey-4);
           margin-left: 1rem;
           position: relative;
+
           span {
             position: absolute;
             top: 0;
@@ -333,28 +329,53 @@ section {
             transition: var(--animation);
             width: 60%;
           }
+
           .html {
-            width: 90%;
+            width: 95%;
           }
 
           .js {
-            width: 90%;
+            width: 95%;
           }
 
-          .css {
-            width: 80%;
+          .ts {
+            width: 90%;
           }
 
           .react {
-            width: 60%;
+            width: 90%;
           }
 
-          .pyhthon {
-            width: 70%;
+          .node {
+            width: 90%;
+          }
+
+          .express {
+            width: 90%;
+          }
+
+          .mongo {
+            width: 85%;
+          }
+
+          .postgres {
+            width: 85%;
+          }
+
+          .redis {
+            width: 75%;
+          }
+
+          .docker {
+            width: 85%;
+          }
+
+          .python {
+            width: 80%;
           }
 
           .cpp {
-            width: 90%;
+            width: 75%;
           }
         }
       }
@@ -369,6 +390,7 @@ section {
   padding: 3.5rem 0;
   position: relative;
   color: var(--color-white);
+
   &::before {
     content: " ";
     position: absolute;
@@ -382,7 +404,6 @@ section {
 }
 
 // TIMELINE
-
 .timeline {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -406,6 +427,7 @@ section {
       display: flex;
       align-items: center;
       justify-content: center;
+
       i {
         font-size: 1.3rem;
       }
@@ -420,6 +442,7 @@ section {
       text-transform: uppercase;
       font-weight: 500;
     }
+
     h5 {
       padding: 1rem 0;
       text-transform: uppercase;
@@ -430,11 +453,36 @@ section {
     p {
       color: var(--color-grey-2);
     }
+
+    ul {
+      margin-top: 0.5rem;
+      padding-left: 1rem;
+      color: var(--color-grey-2);
+
+      li {
+        margin-bottom: 0.3rem;
+        list-style: disc;
+      }
+    }
   }
 }
 
-// PORTFOLIOS
+// Achievements
+.achievements {
+  padding: 0 0 4rem 0;
+  color: var(--color-grey-1);
+  line-height: 2rem;
 
+  ul {
+    margin-left: 1.2rem;
+
+    li {
+      list-style: disc;
+    }
+  }
+}
+
+// PORTFOLIO
 .port-text {
   text-align: center;
   justify-content: center;
@@ -443,8 +491,10 @@ section {
   letter-spacing: 0.5rem;
   color: var(--color-grey-1);
   font-weight: 300;
+
   i {
     color: var(--color-white);
+
     &:hover {
       transform: scaleY(1.2);
     }
@@ -457,14 +507,17 @@ section {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
   margin-top: 3rem;
+
   .portfolio-item {
     position: relative;
+
     img {
       width: 100%;
       height: 300px;
       object-fit: cover;
       border-radius: 10px;
     }
+
     .hover-item {
       width: 100%;
       height: 100%;
@@ -481,16 +534,23 @@ section {
       opacity: 0;
       transform: scale(0);
       transition: all 0.4s ease-in-out;
+      text-align: center;
+      padding: 1rem;
 
       h3 {
         font-size: 1.5rem;
         color: var(--color-white);
       }
 
+      p {
+        font-size: 0.9rem;
+      }
+
       .icons {
         display: flex;
         justify-content: center;
         align-items: center;
+
         .icon {
           background-color: var(--color-primary);
           border-radius: 50%;
@@ -502,6 +562,7 @@ section {
           margin: 0 1rem;
           cursor: pointer;
           transition: all 0.4s ease-in-out;
+
           i {
             font-size: 1.5rem;
             color: var(--color-white);
@@ -510,6 +571,7 @@ section {
 
           &:hover {
             background-color: var(--color-white);
+
             i {
               color: var(--color-primary);
             }
@@ -521,99 +583,39 @@ section {
 }
 
 .portfolio-item:hover .hover-item {
-  opacity: 0.8;
+  opacity: 0.85;
   transform: scale(1);
 }
 
-// BLOGS
-
-.bg-t {
-  text-align: center;
-  justify-content: center;
-  margin-top: 7rem;
-  font-size: 1.3rem;
-  letter-spacing: 0.5rem;
-  color: var(--color-grey-1);
-  font-weight: 300;
-  i {
-    color: var(--color-white);
-    &:hover {
-      transform: scaleY(1.2);
-    }
-  }
-}
-
-.blogs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2rem;
-  margin-top: 7rem;
-
-  .blog {
-    position: relative;
-    background-color: var(--color-grey-5);
-    border-radius: 5px;
-    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s ease-in-out;
-    &:hover {
-      box-shadow: 1px 1px 20px rgba(249, 148, 23, 0.3);
-      transform: translateY(-5px);
-      transition: all 0.4s ease-in-out;
-      img {
-        transform: scale(1.1);
-        box-shadow: 0px 4px 15px rgba(249, 148, 23, 0.8);
-      }
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-      transition: all 0.4s ease-in-out;
-    }
-
-    .blog-text {
-      margin-top: -7px;
-      padding: 1.1rem;
-      h4 {
-        font-size: 1.5rem;
-        margin-top: 1rem;
-        margin-bottom: 0.7rem;
-        color: var(--color-white);
-        transition: var(--animation);
-        cursor: pointer;
-        &:hover {
-          transform: scaleY(1.1);
-          color: #f99417;
-        }
-      }
-      p {
-        line-height: 2rem;
-        padding-bottom: 1rem;
-      }
-    }
-  }
-}
-
 // CONTACT
+.contact-container {
+  background-color: var(--color-grey-6);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: var(--box-shadow-1);
+}
 
 .contact-content-con {
   display: flex;
   padding-top: 3.5rem;
   color: var(--color-grey-1);
+  gap: 3rem;
+
   .left-contact {
     font-size: 0.9rem;
     flex: 2;
+    padding-right: 2rem;
+    border-right: 1px solid var(--color-grey-5);
+
     h4 {
-      margin-top: 1rem;
+      margin-top: 0.5rem;
       font-size: 2rem;
       text-transform: uppercase;
       color: #f99417;
     }
+
     p {
-      margin: 1rem 0;
+      margin: 1rem 0 1.5rem 0;
       line-height: 2rem;
     }
 
@@ -623,6 +625,8 @@ section {
         justify-content: space-between;
         gap: 1rem;
         align-items: center;
+        margin-bottom: 0.8rem;
+
         p {
           margin: 0.3rem 0 !important;
           padding: 0 !important;
@@ -636,6 +640,7 @@ section {
             display: flex;
             align-items: center;
             font-size: 1.3rem;
+            color: var(--color-secondary);
           }
         }
       }
@@ -657,8 +662,10 @@ section {
         border-radius: 50%;
         margin: 0 0.4rem;
         transition: var(--animation);
+
         &:hover {
           background-color: var(--color-secondary);
+
           i {
             color: var(--color-primary);
           }
@@ -676,59 +683,108 @@ section {
 
   .right-contact {
     flex: 3;
-    margin-left: 3rem;
+    margin-left: 1rem;
 
     .contact-form {
+      background-color: var(--color-grey-5);
+      border-radius: 18px;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
+      gap: 1.8rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+
+      .contact-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+        width: 100%;
+      }
+
+      .field-label {
+        display: block;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.4rem;
+        color: var(--color-grey-2);
+      }
+
+      .input-control {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
 
       .text-ar,
       .lb-1 {
         border-radius: 10px;
         font-weight: inherit;
         font-family: inherit;
-        font-size: inherit;
+        font-size: 0.95rem;
         padding: 0.8rem 1.1rem;
         outline: none;
-        border: none;
-        background-color: var(--color-grey-5);
+        border: 1px solid var(--color-grey-4);
+        background-color: var(--color-grey-6);
         width: 100%;
         color: var(--color-white);
         resize: none;
+        transition: var(--animation);
+      }
+
+      .lb-1 {
+        height: 2.8rem;
+      }
+
+      .text-ar {
+        min-height: 8rem;
+      }
+
+      .text-ar::placeholder,
+      .lb-1::placeholder {
+        color: var(--color-grey-3);
+      }
+
+      .text-ar:focus,
+      .lb-1:focus {
+        border-color: var(--color-secondary);
+        box-shadow: 0 0 0 1px var(--color-secondary);
       }
 
       button {
-        width: 10.5rem;
-        height: 2.5rem;
+        width: 100%;
+        max-width: 12rem;
+        height: 2.8rem;
         background-color: transparent;
         color: var(--color-white);
         border: 1px solid var(--color-secondary);
         outline: none;
         cursor: pointer;
         display: flex;
-        align-self: center;
-        display: flex;
+        align-self: flex-end;
         align-items: center;
+        justify-content: center;
         overflow: hidden;
         border-radius: 30px;
         position: relative;
+        gap: 0.5rem;
+        transition: var(--animation);
 
         .bt-text {
-          font-size: 1rem;
+          font-size: 0.95rem;
           text-transform: uppercase;
           font-weight: 700;
-          padding: 0 2rem;
+          padding: 0 0.8rem;
+          letter-spacing: 0.08em;
         }
+
         .bt-icon {
           background-color: var(--color-secondary);
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 50%;
-          padding: 1rem;
+          padding: 0.7rem;
         }
 
         &::before {
@@ -742,22 +798,25 @@ section {
         }
 
         &:hover {
-          transition: var(--animation);
+          transform: translateY(-2px);
 
           &::before {
             width: 100%;
             height: 100%;
             background-color: var(--color-secondary);
             transform: translateX(0);
-            transition: var(--animation);
           }
+        }
+
+        &:active {
+          transform: translateY(0);
         }
       }
     }
   }
 }
 
-// Independent-Content
+// Independent Content
 .btn-con {
   display: flex;
   align-self: flex-start;
@@ -772,9 +831,9 @@ section {
   border: 1px solid var(--color-secondary);
   display: flex;
   align-self: flex-start;
-  display: flex;
   align-items: center;
   overflow: hidden;
+
   .btn-text {
     padding: 0 2rem;
   }
@@ -787,6 +846,7 @@ section {
     border-radius: 50%;
     padding: 1rem;
   }
+
   &::before {
     content: "";
     position: absolute;
@@ -796,6 +856,7 @@ section {
     transition: var(--animation);
     z-index: -1;
   }
+
   &:hover {
     transition: var(--animation);
 
@@ -804,7 +865,6 @@ section {
       height: 100%;
       background-color: var(--color-secondary);
       transform: translateX(0);
-      transition: var(--animation);
     }
   }
 }
@@ -818,16 +878,16 @@ section {
     text-transform: uppercase;
     font-size: 3rem;
     font-weight: 700;
-
     color: var(--color-white);
+
     span {
       color: var(--color-secondary);
     }
+
     .bg-text {
       position: absolute;
       top: 50%;
       left: 50%;
-
       color: var(--color-grey-5);
       transition: var(--animation);
       z-index: -1;
@@ -839,9 +899,8 @@ section {
 }
 
 /**
-   THEME CHANGER
-*/
-
+ * THEME CHANGER
+ */
 .theme-btn {
   top: 5%;
   right: 3%;
@@ -856,9 +915,11 @@ section {
   align-items: center;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
   transition: all 0.1s ease-in-out;
+
   &:active {
     transform: translateY(-3px);
   }
+
   i {
     font-size: 1.4rem;
     color: var(--color-grey-2);

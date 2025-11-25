@@ -49,8 +49,6 @@
       content="https://raw.githubusercontent.com/shreyashchandra/portfolio-website-shreyash/main/asset/img/shreyashchandra.png"
     />
 
-    <!-- Meta Tags Generated via https://www.opengraph.xyz -->
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -74,7 +72,10 @@
         <div class="left-header">
           <div class="h-shape"></div>
           <div class="image">
-            <img src="/asset/img/hero.png" alt="Portrait of Shreyash" />
+            <!-- GitHub profile card goes here -->
+            <div id="github-card" class="gh-card">
+              <div class="gh-loading">Loading GitHub profile…</div>
+            </div>
           </div>
         </div>
         <div class="right-header">
@@ -427,10 +428,7 @@
 
         <!-- ACHIEVEMENTS -->
         <h4 class="stat-title">Achievements</h4>
-        <div
-          class="achievements"
-          style="color: var(--color-grey-1); line-height: 2rem"
-        >
+        <div class="achievements">
           <ul>
             <li>
               <strong>GPT‑4o Hackathon Winner (May 2024) – Padhlybh.ai:</strong>
@@ -460,308 +458,249 @@
         </p>
 
         <div class="portfolios">
-          <!-- Padhlybh.ai (GPT-4o hackathon winner) -->
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="asset/img/pdlai.png" alt="Padhlybh.ai" />
+          <!-- Padhlybh.ai -->
+          <article class="project-card">
+            <div class="project-title-row">
+              <h3 class="project-name">Padhlybh.ai</h3>
+              <span class="project-badge">GPT‑4o Hackathon Winner</span>
             </div>
-            <div class="hover-item">
-              <h3>Padhlybh.ai</h3>
-              <p style="text-align: center; padding: 0 1rem">
-                GPT‑4o hackathon-winning AI-powered study planner with an NLP
-                scheduler that improves study efficiency by 40%.
-              </p>
-              <div class="icons">
-                <a
-                  href="https://github.com/Adityauyadav/PadhLeBhAI-v1"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-                <a
-                  href="https://padhlebh-ai.vercel.app/"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- PayNow -->
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="asset/img/PayNow.png" alt="PayNow" />
-            </div>
-            <div class="hover-item">
-              <h3>PayNow</h3>
-              <p style="text-align: center; padding: 0 1rem">
-                Full-stack payment platform (Node.js, Express, React, MongoDB)
-                processing 5k+ monthly transactions with 99.9% data integrity.
-              </p>
-              <div class="icons">
-                <a
-                  href="https://github.com/shreyashchandra/PayNow-frontend"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-                <a
-                  href="https://paynow.shreyash.space/"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- SpaceVerse -->
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="asset/img/SpaceVerse.png" alt="SpaceVerse" />
-            </div>
-            <div class="hover-item">
-              <h3>SpaceVerse</h3>
-              <p style="text-align: center; padding: 0 1rem">
-                Space-themed photo gallery built with Next.js, TypeScript,
-                Vercel DB, Drizzle ORM, Clerk Auth, and Uploadthing.
-              </p>
-              <div class="icons">
-                <a
-                  href="https://github.com/shreyashchandra/t3gallery"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-                <a
-                  href="https://t3gallery-neon-six.vercel.app/"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Cognito -->
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="asset/img/cognito.png" alt="Cognito blog app" />
-            </div>
-            <div class="hover-item">
-              <h3>Cognito</h3>
-              <p style="text-align: center; padding: 0 1rem">
-                Blog app with Hono backend and React+TS frontend on Cloudflare
-                Workers, using Postgres + Prisma for ACID compliance.
-              </p>
-              <div class="icons">
-                <!-- TODO: add your real GitHub & live links for Cognito -->
-                <a
-                  href="#"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-                <a
-                  href="#"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Verbatiam -->
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="asset/img/verbatiam.png" alt="Verbatiam" />
-            </div>
-            <div class="hover-item">
-              <h3>Verbatiam</h3>
-              <p style="text-align: center; padding: 0 1rem">
-                Experimental web app exploring interactions in your spaceverse.
-              </p>
-              <div class="icons">
-                <a
-                  href="https://github.com/shreyashchandra/Verbatiam"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-                <a
-                  href="https://verbatiam.shreyash.space/"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Weather-io -->
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="asset/img/port1.png" alt="weather-io" />
-            </div>
-            <div class="hover-item">
-              <h3>weather-io</h3>
-              <p style="text-align: center; padding: 0 1rem">
-                Weather app consuming public APIs with a clean UI.
-              </p>
-              <div class="icons">
-                <a
-                  href="https://github.com/shreyashchandra/weather-io"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-                <a
-                  href="https://shreyashchandra.github.io/weather-io/"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- NG Calculator -->
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="asset/img/port3.png" alt="NG Calculator" />
-            </div>
-            <div class="hover-item">
-              <h3>NG Calculator</h3>
-              <p style="text-align: center; padding: 0 1rem">
-                Minimal calculator web app showcasing UI and basic logic.
-              </p>
-              <div class="icons">
-                <a
-                  href="https://github.com/shreyashchandra/NG-calculator"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-                <a
-                  href="https://ng-calculator-one.vercel.app/"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Docs View -->
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="asset/img/DOCS VIEW..png" alt="Docs View app" />
-            </div>
-            <div class="hover-item">
-              <h3>Docs View</h3>
-              <p style="text-align: center; padding: 0 1rem">
-                Document viewing and management app with a clean, responsive UI.
-              </p>
-              <div class="icons">
-                <a
-                  href="https://github.com/shreyashchandra/Docs-View"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-                <a
-                  href="https://docs-view.vercel.app/"
-                  class="icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- BLOGS -->
-      <section class="section sec4" id="blog">
-        <div class="blogs-content">
-          <div class="main-title">
-            <h2>
-              My <span>Blogs</span><span class="bg-text">My writings</span>
-            </h2>
-          </div>
-
-          <h5 class="bg-t">
-            Click on my blogs to read more.
-            <a
-              href="https://medium.com/@shreyashchandra"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fas fa-external-link-alt"></i>
-            </a>
-          </h5>
-          <div class="blogs">
-            <div class="blog">
+            <p class="project-stack">
+              Next.js · TypeScript · OpenAI · Tailwind
+            </p>
+            <p class="project-desc">
+              AI-powered study planner with an NLP scheduler that improves study
+              efficiency by 40%. Built in 48 hours and won 1st place among 20
+              teams.
+            </p>
+            <div class="project-links">
               <a
-                href="https://medium.com/@shreyashchandra/what-is-web3-0-why-do-we-need-it-4789eb387636"
+                href="https://github.com/Adityauyadav/PadhLeBhAI-v1"
+                class="project-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img src="/asset/img/blog1.png" alt="What is Web 3.0 blog" />
+                <i class="fab fa-github"></i>
+                <span>Code</span>
               </a>
-              <div class="blog-text">
-                <a
-                  href="https://medium.com/@shreyashchandra"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <h4>What is Web 3.0?</h4>
-                </a>
-                <p>
-                  In today’s time, everyone talks about freedom of speech. What
-                  does it really mean, and how does Web 3.0 change the
-                  conversation?
-                </p>
-              </div>
+              <a
+                href="https://padhlebh-ai.vercel.app/"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live</span>
+              </a>
             </div>
-          </div>
+          </article>
+
+          <!-- PayNow -->
+          <article class="project-card">
+            <div class="project-title-row">
+              <h3 class="project-name">PayNow</h3>
+              <span class="project-badge">Payments Platform</span>
+            </div>
+            <p class="project-stack">
+              Node.js · Express · React · MongoDB · Tailwind
+            </p>
+            <p class="project-desc">
+              Full-stack payment platform processing 5k+ monthly transactions
+              with JWT auth and MongoDB transactions to guarantee 99.9% data
+              integrity.
+            </p>
+            <div class="project-links">
+              <a
+                href="https://github.com/shreyashchandra/PayNow-frontend"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+              <a
+                href="https://paynow.shreyash.space/"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- SpaceVerse -->
+          <article class="project-card">
+            <div class="project-title-row">
+              <h3 class="project-name">SpaceVerse</h3>
+              <span class="project-badge">Photo Gallery</span>
+            </div>
+            <p class="project-stack">
+              Next.js · TypeScript · Vercel DB · Drizzle ORM · Clerk ·
+              Uploadthing
+            </p>
+            <p class="project-desc">
+              Space-themed photo gallery for 2k+ monthly users with auth,
+              optimized queries, and mobile‑first UX.
+            </p>
+            <div class="project-links">
+              <a
+                href="https://github.com/shreyashchandra/t3gallery"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+              <a
+                href="https://t3gallery-neon-six.vercel.app/"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Cognito -->
+          <article class="project-card">
+            <div class="project-title-row">
+              <h3 class="project-name">Cognito</h3>
+              <span class="project-badge">Blog Platform</span>
+            </div>
+            <p class="project-stack">
+              React · TypeScript · Cloudflare Workers · Hono · Postgres · Prisma
+            </p>
+            <p class="project-desc">
+              Blog app deployed on Cloudflare Workers with 99.9% uptime, ACID
+              guarantees via Postgres + Prisma, and shared types published as an
+              npm package.
+            </p>
+            <div class="project-links">
+              <a
+                href="#"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+              <a
+                href="#"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Weather-io -->
+          <article class="project-card">
+            <div class="project-title-row">
+              <h3 class="project-name">weather‑io</h3>
+              <span class="project-badge">Utility</span>
+            </div>
+            <p class="project-stack">JavaScript · REST APIs</p>
+            <p class="project-desc">
+              Weather app consuming public APIs with a clean, responsive UI and
+              focus on simple UX.
+            </p>
+            <div class="project-links">
+              <a
+                href="https://github.com/shreyashchandra/weather-io"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+              <a
+                href="https://shreyashchandra.github.io/weather-io/"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- NG Calculator -->
+          <article class="project-card">
+            <div class="project-title-row">
+              <h3 class="project-name">NG Calculator</h3>
+              <span class="project-badge">Mini App</span>
+            </div>
+            <p class="project-stack">JavaScript · UI Experiments</p>
+            <p class="project-desc">
+              Minimal calculator app showcasing UI and basic interaction logic.
+            </p>
+            <div class="project-links">
+              <a
+                href="https://github.com/shreyashchandra/NG-calculator"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+              <a
+                href="https://ng-calculator-one.vercel.app/"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Docs View -->
+          <article class="project-card">
+            <div class="project-title-row">
+              <h3 class="project-name">Docs View</h3>
+              <span class="project-badge">Docs Tool</span>
+            </div>
+            <p class="project-stack">Next.js · TypeScript · Editor / Docs UX</p>
+            <p class="project-desc">
+              Document viewing and management app with a clean, responsive
+              interface for browsing and reading docs.
+            </p>
+            <div class="project-links">
+              <a
+                href="https://github.com/shreyashchandra/Docs-View"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+              <a
+                href="https://docs-view.vercel.app/"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live</span>
+              </a>
+            </div>
+          </article>
         </div>
       </section>
-
       <!-- CONTACT -->
       <section class="section sec5 contact" id="contact">
         <div class="contact-container">
@@ -771,11 +710,12 @@
 
           <div class="contact-content-con">
             <div class="left-contact">
-              <h4>Connect with me here</h4>
+              <h4>Let’s build something</h4>
               <p>
                 I’m exploring opportunities across backend, DevOps, and AI, and
-                always open to collaborating with builders and founders. Feel
-                free to reach out.
+                always open to collaborating with builders and founders. Whether
+                you’re hiring, looking for a collaborator, or just want to chat
+                about systems and space, my inbox is open.
               </p>
               <div class="contact-info">
                 <div class="contact-item">
@@ -842,36 +782,44 @@
                 method="POST"
                 class="contact-form"
               >
-                <label class="input-control i-c-2">
-                  <input
-                    type="text"
-                    name="name"
-                    class="lb-1"
-                    placeholder="Your Name:"
-                  />
-                </label>
+                <div class="contact-row">
+                  <label class="input-control">
+                    <span class="field-label">Name</span>
+                    <input
+                      type="text"
+                      name="name"
+                      class="lb-1"
+                      placeholder="Your Name"
+                      required
+                    />
+                  </label>
 
-                <label class="input-control i-c-2">
-                  <input
-                    type="email"
-                    name="email"
-                    class="lb-1"
-                    placeholder="Your email:"
-                  />
-                </label>
+                  <label class="input-control">
+                    <span class="field-label">Email</span>
+                    <input
+                      type="email"
+                      name="email"
+                      class="lb-1"
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </label>
+                </div>
 
                 <label class="input-control">
+                  <span class="field-label">Message</span>
                   <textarea
                     cols="30"
-                    rows="10"
+                    rows="8"
                     class="text-ar"
                     name="message"
-                    placeholder="Your Message"
+                    placeholder="Tell me about your project, idea, or question..."
+                    required
                   ></textarea>
                 </label>
 
                 <button type="submit">
-                  <span class="bt-text">Submit</span>
+                  <span class="bt-text">Send Message</span>
                   <span class="bt-icon">
                     <i class="far fa-paper-plane"></i>
                   </span>
@@ -883,7 +831,7 @@
       </section>
     </main>
 
-    <!-- FLOATING CONTROLS (now for scrolling between sections) -->
+    <!-- FLOATING CONTROLS (scroll navigation) -->
     <div class="controls">
       <div class="control control-1 active-btn" data-id="home">
         <a href="#home" aria-label="Home">
@@ -900,12 +848,7 @@
           <i class="fas fa-briefcase"></i>
         </a>
       </div>
-      <div class="control control-4" data-id="blog">
-        <a href="#blog" aria-label="Blog">
-          <i class="fab fa-blogger-b"></i>
-        </a>
-      </div>
-      <div class="control control-5" data-id="contact">
+      <div class="control control-4" data-id="contact">
         <a href="#contact" aria-label="Contact">
           <i class="fas fa-envelope-open"></i>
         </a>
@@ -925,7 +868,7 @@
       <a href="https://webneko.net">Neko</a>
     </h1>
 
-    <!-- Main JS (theme toggle / any extra JS) -->
+    <!-- Main JS (theme toggle + scroll nav + GitHub card) -->
     <script type="module" src="/asset/main.js"></script>
   </body>
 </html>
