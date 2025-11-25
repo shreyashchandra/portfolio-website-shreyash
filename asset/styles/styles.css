@@ -181,7 +181,7 @@ section {
 .header-content .left-header .image {
   border-radius: var(--br-sm-2);
   height: 90%;
-  width: 68%;
+  width: 80%;
   margin-left: 4rem;
   background: radial-gradient(circle at top left, #22c55e22, transparent 55%),
     #020617;
