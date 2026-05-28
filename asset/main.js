@@ -72,53 +72,204 @@ async function fetchGithubContributions(username) {
 }
 
 /* ============================================================
-   BUILD CONTRIBUTION GRAPH
+   TOOLTIP HELPER
+   ============================================================ */
+
+function positionTooltip(target, tooltip) {
+  const rect = target.getBoundingClientRect();
+  const tipW = tooltip.offsetWidth;
+  const tipH = tooltip.offsetHeight;
+
+  let left = rect.left + rect.width / 2 - tipW / 2;
+  let top = rect.top - tipH - 8;
+
+  if (top < 8) top = rect.bottom + 8;
+  if (left < 4) left = 4;
+  if (left + tipW > window.innerWidth - 4) left = window.innerWidth - tipW - 4;
+
+  tooltip.style.left = `${left}px`;
+  tooltip.style.top = `${top}px`;
+}
+
+/* ============================================================
+   BUILD CONTRIBUTION GRAPH (v2 — interactive)
    ============================================================ */
 
 function buildContributionGraph(cells) {
-  const container = document.createElement("div");
-  container.className = "gh-contrib-graph";
+  const CELL = 13;
+  const GAP = 3;
+  const WEEK_W = CELL + GAP; // 16px per week column
 
+  const cellsArray = Array.from(cells);
+
+  /* total contributions */
+  const total = cellsArray.reduce(
+    (sum, c) => sum + (parseInt(c.getAttribute("data-count")) || 0),
+    0
+  );
+
+  /* group by week index */
   const weeks = {};
-
-  cells.forEach((cell) => {
-    const ix = cell.getAttribute("data-ix");
+  cellsArray.forEach((c) => {
+    const ix = c.getAttribute("data-ix");
+    if (ix == null) return;
     if (!weeks[ix]) weeks[ix] = [];
-    weeks[ix].push(cell);
+    weeks[ix].push(c);
   });
 
   const sorted = Object.keys(weeks).sort((a, b) => Number(a) - Number(b));
+  if (sorted.length === 0) return document.createElement("div");
 
-  sorted.forEach((week) => {
+  const firstIx = Number(sorted[0]);
+
+  /* month markers */
+  const MONTHS = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+  ];
+  const seenMonths = new Set();
+  const monthMarkers = [];
+
+  sorted.forEach((wk) => {
+    const colOffset = Number(wk) - firstIx;
+    weeks[wk].forEach((c) => {
+      const dateStr = c.getAttribute("data-date");
+      if (!dateStr) return;
+      const d = new Date(dateStr + "T12:00:00");
+      const key = `${d.getFullYear()}-${d.getMonth()}`;
+      if (!seenMonths.has(key)) {
+        seenMonths.add(key);
+        monthMarkers.push({ label: MONTHS[d.getMonth()], colOffset });
+      }
+    });
+  });
+
+  /* ---- build DOM ---- */
+  const wrapper = document.createElement("div");
+  wrapper.className = "gh-contrib-wrapper";
+
+  /* stats line */
+  const statsLine = document.createElement("div");
+  statsLine.className = "gh-contrib-stats";
+  statsLine.textContent = `${total.toLocaleString()} contributions in the last year`;
+  wrapper.appendChild(statsLine);
+
+  /* body: day-labels + scrollable */
+  const body = document.createElement("div");
+  body.className = "gh-contrib-body";
+
+  /* day labels */
+  const dayLabelEl = document.createElement("div");
+  dayLabelEl.className = "gh-contrib-day-labels";
+  ["", "Mon", "", "Wed", "", "Fri", ""].forEach((lbl) => {
+    const s = document.createElement("span");
+    s.textContent = lbl;
+    dayLabelEl.appendChild(s);
+  });
+  body.appendChild(dayLabelEl);
+
+  /* scrollable area */
+  const scrollable = document.createElement("div");
+  scrollable.className = "gh-contrib-scrollable";
+
+  /* month labels (absolute positioned over graph) */
+  const monthRow = document.createElement("div");
+  monthRow.className = "gh-contrib-months";
+  monthMarkers.forEach(({ label, colOffset }) => {
+    const s = document.createElement("span");
+    s.className = "gh-contrib-month";
+    s.textContent = label;
+    s.style.left = `${colOffset * WEEK_W}px`;
+    monthRow.appendChild(s);
+  });
+  scrollable.appendChild(monthRow);
+
+  /* graph grid */
+  const graph = document.createElement("div");
+  graph.className = "gh-contrib-graph";
+
+  /* shared tooltip (one per page) */
+  let tooltip = document.getElementById("gh-contrib-tip");
+  if (!tooltip) {
+    tooltip = document.createElement("div");
+    tooltip.id = "gh-contrib-tip";
+    tooltip.className = "gh-contrib-tooltip";
+    document.body.appendChild(tooltip);
+  }
+
+  const COLORS = {
+    0: "var(--gh-l0)",
+    1: "var(--gh-l1)",
+    2: "var(--gh-l2)",
+    3: "var(--gh-l3)",
+    4: "var(--gh-l4)",
+  };
+
+  sorted.forEach((wk, weekIdx) => {
     const col = document.createElement("div");
     col.className = "gh-contrib-week";
+    col.style.animationDelay = `${weekIdx * 8}ms`;
 
-    weeks[week].forEach((cellData) => {
+    weeks[wk].forEach((cellData) => {
       const div = document.createElement("div");
       div.className = "gh-contrib-cell";
 
-      const level = cellData.getAttribute("data-level");
-      const count = cellData.getAttribute("data-count");
-      const date = cellData.getAttribute("data-date");
+      const level = cellData.getAttribute("data-level") || "0";
+      const count = parseInt(cellData.getAttribute("data-count")) || 0;
+      const dateStr = cellData.getAttribute("data-date") || "";
 
-      const colors = {
-        0: "#161b22",
-        1: "#0e4429",
-        2: "#006d32",
-        3: "#26a641",
-        4: "#39d353",
-      };
+      div.style.background = COLORS[level] || COLORS[0];
 
-      div.style.background = colors[level] || "#161b22";
-      div.title = `${count} contributions on ${date}`;
+      const dateLabel = dateStr
+        ? new Date(dateStr + "T12:00:00").toLocaleDateString("en-US", {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })
+        : "";
+      const countLabel =
+        count === 0
+          ? "No contributions"
+          : `${count} contribution${count !== 1 ? "s" : ""}`;
+
+      div.addEventListener("mouseenter", () => {
+        tooltip.innerHTML = `<strong>${countLabel}</strong>${
+          dateLabel ? `<br><span>${dateLabel}</span>` : ""
+        }`;
+        tooltip.style.display = "block";
+        positionTooltip(div, tooltip);
+        tooltip.classList.add("visible");
+      });
+
+      div.addEventListener("mouseleave", () => {
+        tooltip.classList.remove("visible");
+        tooltip.style.display = "none";
+      });
 
       col.appendChild(div);
     });
 
-    container.appendChild(col);
+    graph.appendChild(col);
   });
 
-  return container;
+  scrollable.appendChild(graph);
+  body.appendChild(scrollable);
+  wrapper.appendChild(body);
+
+  /* legend */
+  const legend = document.createElement("div");
+  legend.className = "gh-contrib-legend";
+  legend.innerHTML = `
+    <span>Less</span>
+    ${[0, 1, 2, 3, 4]
+      .map((l) => `<div class="gh-legend-cell" style="background:var(--gh-l${l})"></div>`)
+      .join("")}
+    <span>More</span>
+  `;
+  wrapper.appendChild(legend);
+
+  return wrapper;
 }
 
 /* ============================================================
@@ -193,14 +344,7 @@ function buildGithubCard(container, profile, repos, rects) {
   container.appendChild(stats);
 
   /* CONTRIBUTION GRAPH */
-  const contribTitle = document.createElement("div");
-  contribTitle.className = "gh-highlights-title";
-  contribTitle.textContent = "Contribution Activity";
-  contribTitle.style.marginTop = "0.75rem";
-
   const graph = buildContributionGraph(rects);
-
-  container.appendChild(contribTitle);
   container.appendChild(graph);
 
   /* HIGHLIGHTED REPOS */
@@ -263,10 +407,34 @@ async function initGithubCard() {
   }
 }
 
+/* ============================================================
+   PROGRESS BAR ANIMATION (scroll into view)
+   ============================================================ */
+
+function initProgressBars() {
+  const aboutStats = document.querySelector(".about-stats");
+  if (!aboutStats) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          aboutStats.classList.add("in-view");
+          observer.disconnect();
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  observer.observe(aboutStats);
+}
+
 function init() {
   setupNavigation();
   setupThemeToggle();
   initGithubCard();
+  initProgressBars();
 }
 
 init();
