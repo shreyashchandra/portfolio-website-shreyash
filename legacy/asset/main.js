@@ -1,5 +1,6 @@
 // asset/main.js
 import "./styles/styles.css";
+import { getProjects, getExperience, esc } from "./data.js";
 
 const controls = document.querySelectorAll(".control");
 const themeBtn = document.querySelector(".theme-btn");
@@ -430,11 +431,63 @@ function initProgressBars() {
   observer.observe(aboutStats);
 }
 
+/* ============================================================
+   RENDER PROJECTS (from localStorage / defaults)
+   ============================================================ */
+
+function renderProjects() {
+  const container = document.querySelector('.portfolios');
+  if (!container) return;
+
+  const projects = getProjects();
+
+  container.innerHTML = projects.map((p) => `
+    <article class="project-card">
+      <div class="project-title-row">
+        <h3 class="project-name">${esc(p.name)}</h3>
+        <span class="project-badge">${esc(p.badge)}</span>
+      </div>
+      <p class="project-stack">${esc(p.stack)}</p>
+      <p class="project-desc">${esc(p.desc)}</p>
+      <div class="project-links">
+        ${p.github ? `<a href="${esc(p.github)}" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span>Code</span></a>` : ''}
+        ${p.live   ? `<a href="${esc(p.live)}"   class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i><span>Live</span></a>` : ''}
+      </div>
+    </article>
+  `).join('');
+}
+
+/* ============================================================
+   RENDER EXPERIENCE (from localStorage / defaults)
+   ============================================================ */
+
+function renderExperience() {
+  const container = document.querySelector('.timeline');
+  if (!container) return;
+
+  const experience = getExperience();
+
+  container.innerHTML = experience.map((item) => `
+    <div class="timeline-item">
+      <div class="tl-icon">
+        <i class="fas fa-${esc(item.icon || 'briefcase')}"></i>
+      </div>
+      <p class="tl-duration">${esc(item.duration)}</p>
+      <h5>${esc(item.role)} – <span>${esc(item.company)}</span></h5>
+      ${item.points && item.points.length > 0
+        ? `<ul>${item.points.map((pt) => `<li>${esc(pt)}</li>`).join('')}</ul>`
+        : item.desc ? `<p>${esc(item.desc)}</p>` : ''}
+    </div>
+  `).join('');
+}
+
 function init() {
   setupNavigation();
   setupThemeToggle();
   initGithubCard();
   initProgressBars();
+  renderProjects();
+  renderExperience();
 }
 
 init();
