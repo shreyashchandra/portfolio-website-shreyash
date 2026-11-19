@@ -5,12 +5,16 @@ export const profile = {
   role: "Full Stack Engineer",
   focus: "Backend & DevOps",
   status: "System Engineer at TCS",
-  location: "New Delhi, India",
+  location: "India",
   timeZone: "Asia/Kolkata",
   email: "shreyash.chandra123@gmail.com",
   github: "https://github.com/shreyashchandra",
   githubUser: "shreyashchandra",
+  chessUser: "shreyashchandraa",
+  chessProfile: "https://www.chess.com/member/shreyashchandraa",
   linkedin: "https://www.linkedin.com/in/shreyashchandra/",
+  x: "https://x.com/shreyashchandra",
+  xHandle: "@shreyashchandra",
   // Drop the PDF into /public with this name to enable the download link.
   resume: "/Shreyash_Chandra_CV.pdf",
   site: "https://www.shreyash.world",
@@ -194,7 +198,7 @@ export const offClock = [
   {
     title: "Chess",
     line: "One more game.",
-    body: "I liked post-game analysis enough to build Wazir, a free game-review extension running Stockfish in the browser.",
+    body: "Mostly bullet, mostly online as @shreyashchandraa. I liked post-game analysis enough to build Wazir, a free game-review extension running Stockfish in the browser.",
   },
 ];
 

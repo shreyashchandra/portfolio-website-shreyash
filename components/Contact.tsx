@@ -34,6 +34,14 @@ export default function Contact() {
         <button className="btn btn--invert" onClick={copy} aria-live="polite">
           {copied ? "Copied ✓" : "Copy email"}
         </button>
+        <a
+          className="btn btn--invert"
+          href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open in Gmail ↗
+        </a>
       </div>
 
       <ul className="contact__links" data-reveal>
@@ -46,6 +54,12 @@ export default function Contact() {
         <li>
           <a href={profile.github} target="_blank" rel="noopener noreferrer">
             <span>GitHub</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a href={profile.x} target="_blank" rel="noopener noreferrer">
+            <span>X</span>
             <span aria-hidden="true">↗</span>
           </a>
         </li>

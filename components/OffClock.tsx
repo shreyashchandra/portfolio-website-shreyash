@@ -1,6 +1,7 @@
 import { offClock } from "@/content/site";
 import SectionHead from "./SectionHead";
 import ChessPuzzle from "./ChessPuzzle";
+import ChessStats from "./ChessStats";
 
 const deco: Record<string, React.ReactNode> = {
   Movies: (
@@ -43,6 +44,7 @@ export default function OffClock() {
             <p className="off__hint">Your move. Click a piece, then a square.</p>
           </div>
           <ChessPuzzle />
+          <ChessStats />
         </article>
       </div>
     </section>

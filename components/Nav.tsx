@@ -83,7 +83,7 @@ export default function Nav() {
         </nav>
 
         <div className="nav__meta">
-          <span className="nav__clock" title="My local time, New Delhi">
+          <span className="nav__clock" title="My local time (IST)">
             <span className="nav__tz">IST</span> {time}
           </span>
           <button className="nav__theme" onClick={toggleTheme} aria-label="Toggle colour theme">

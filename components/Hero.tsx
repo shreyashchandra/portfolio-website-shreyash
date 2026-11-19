@@ -37,7 +37,10 @@ export default function Hero() {
             <a className="btn btn--fill" href="#work">
               See the work <span aria-hidden="true">↓</span>
             </a>
-            <a className="btn" href={`mailto:${profile.email}`}>
+            <a className="btn" href={profile.resume} target="_blank" rel="noopener noreferrer">
+              Résumé <span aria-hidden="true">↗</span>
+            </a>
+            <a className="btn" href="#contact">
               Get in touch
             </a>
           </div>

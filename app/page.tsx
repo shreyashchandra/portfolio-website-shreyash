@@ -11,6 +11,9 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 
+// Re-render at most hourly so the live Chess.com stats stay fresh.
+export const revalidate = 3600;
+
 export default function Home() {
   return (
     <>
