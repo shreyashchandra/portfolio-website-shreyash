@@ -64,22 +64,6 @@
   ],
   "projects": [
     {
-      "name": "TradeArena",
-      "kind": "Paper trading platform",
-      "year": "2026",
-      "blurb": "Trade stocks with virtual capital. Order matching, portfolio tracking, transaction history and real-time dashboards behind authenticated REST APIs.",
-      "stack": [
-        "Next.js",
-        "TypeScript",
-        "Node.js",
-        "C++"
-      ],
-      "live": "https://trade-arena-opal.vercel.app",
-      "code": "https://github.com/shreyashchandra/TradeArena",
-      "snippet": "POST /orders  → 201 filled ✓",
-      "hue": 152
-    },
-    {
       "name": "Wazir",
       "kind": "Chrome extension",
       "year": "2025",
@@ -89,10 +73,10 @@
         "Stockfish WASM",
         "Web Workers"
       ],
-      "live": "https://wazir.shreyash.world/",
-      "code": "https://github.com/shreyashchandra/Wazir",
       "snippet": "eval +1.42 · depth 22 · best Nf5",
-      "hue": 38
+      "hue": 38,
+      "live": "https://wazir.shreyash.world/",
+      "code": "https://github.com/shreyashchandra/Wazir"
     },
     {
       "name": "PadhLyeBhaiAI",
@@ -104,11 +88,27 @@
         "OpenAI",
         "Next.js"
       ],
-      "live": "https://padhlyebhaiai.shreyash.world/",
-      "code": "https://github.com/shreyashchandra/padhlyebhaiai",
       "snippet": "plan.generate(syllabus, 14d) ✓",
       "hue": 262,
+      "live": "https://padhlyebhaiai.shreyash.world/",
+      "code": "https://github.com/shreyashchandra/padhlyebhaiai",
       "award": "1st place · GPT-4o Hackathon"
+    },
+    {
+      "name": "TradeArena",
+      "kind": "Paper trading platform",
+      "year": "2026",
+      "blurb": "Trade stocks with virtual capital. Order matching, portfolio tracking, transaction history and real-time dashboards behind authenticated REST APIs.",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "C++"
+      ],
+      "snippet": "POST /orders  → 201 filled ✓",
+      "hue": 152,
+      "live": "https://trade-arena-opal.vercel.app",
+      "code": "https://github.com/shreyashchandra/TradeArena"
     },
     {
       "name": "PayNow",
@@ -121,10 +121,10 @@
         "MongoDB",
         "JWT"
       ],
-      "live": "https://paynow.shreyash.world/",
-      "code": "https://github.com/shreyashchandra/PayNow-frontend",
       "snippet": "txn.commit()  ledger balanced ✓",
-      "hue": 220
+      "hue": 220,
+      "live": "https://paynow.shreyash.world/",
+      "code": "https://github.com/shreyashchandra/PayNow-frontend"
     },
     {
       "name": "Cognito",
@@ -137,25 +137,10 @@
         "Prisma",
         "Postgres"
       ],
-      "live": "https://cognito.shreyash.world/",
-      "code": "https://github.com/shreyashchandra/Medium-Blog",
       "snippet": "GET /api/v1/blog  → 200 OK · edge",
-      "hue": 14
-    },
-    {
-      "name": "Flow Builder",
-      "kind": "Visual workflow designer",
-      "year": "2025",
-      "blurb": "Drag, drop and connect nodes into conditional flows with live JSON preview, inline validation and import/export.",
-      "stack": [
-        "React",
-        "TypeScript",
-        "React Flow"
-      ],
-      "live": "https://flow-builder-iota-puce.vercel.app",
-      "code": "https://github.com/shreyashchandra/flow-builder",
-      "snippet": "nodes: 12 · edges: 14 · valid ✓",
-      "hue": 190
+      "hue": 14,
+      "live": "https://cognito.shreyash.world/",
+      "code": "https://github.com/shreyashchandra/Medium-Blog"
     }
   ]
 }
